@@ -1,0 +1,1 @@
+<img src="{{ asset('storage/images/SMK_Negeri_40_Jakarta.png') }}" alt="SMKN 40 Logo" class="{{ $attributes->get('class') }}">
