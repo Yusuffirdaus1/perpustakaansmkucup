@@ -11,28 +11,14 @@ class AdminSeeder extends Seeder
 {
     public function run(): void
     {
+
+        // Petugas
         DB::table('users')->updateOrInsert(
-            ['email' => 'admin@smk65.test'],
+            ['email' => 'petugas@smk65.test'],
             [
-                'name' => 'Admin Perpustakaan',
-                'email' => 'admin@smk65.test',
-                'password' => Hash::make('admin123'),
-                'role' => 'admin',
-                'blacklist' => false,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
-        );
-        DB::table('users')->updateOrInsert(
-            ['email' => 'test@example.com'],
-            [
-                'name' => 'Siswa Contoh',
-                'email' => 'test@example.com',
-                'password' => Hash::make('password'),
-                'role' => 'siswa',
-                'blacklist' => false,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'name' => 'Petugas Perpus',
+                'password' => bcrypt('petugas123'),
+                'role' => 'petugas',
             ]
         );
     }

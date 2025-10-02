@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Middleware;
 
 use Closure;
@@ -8,7 +9,7 @@ class AdminMiddleware
 {
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role === 'admin') {
+        if (Auth::check() && in_array(Auth::user()->role, ['admin', 'petugas'])) {
             return $next($request);
         }
         abort(403, 'Unauthorized');

@@ -104,17 +104,19 @@
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <form action="{{ route('peminjaman.konfirmasi-pengembalian', $p->id) }}" method="POST" class="inline">
-                                            @csrf
-                                            <button type="submit" 
-                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                                                <svg class="mr-2 -ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                                </svg>
-                                                Konfirmasi
-                                            </button>
-                                        </form>
-                                    </td>
+    @if(auth()->user()->role === 'petugas' || auth()->user()->role === 'admin')
+        <form action="{{ route('peminjaman.konfirmasi-pengembalian', $p->id) }}" method="POST" class="inline">
+            @csrf
+            <button type="submit" 
+                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                <svg class="mr-2 -ml-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                Konfirmasi
+            </button>
+        </form>
+    @endif
+</td>
                                 </tr>
                             @endforeach
                         </tbody>

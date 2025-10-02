@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -23,17 +24,24 @@ class AuthenticatedSessionController extends Controller
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request)
-{
-    $request->authenticate();
-    $request->session()->regenerate();
-
-    // Redirect otomatis berdasarkan role
-    if (auth()->user()->role === 'admin') {
-        return redirect()->route('dashboard');
-    } else {
-        return redirect()->route('dashboard.siswa');
+    {
+        $request->authenticate();
+        $request->session()->regenerate();
+    
+        $user = Auth::user(); // Ganti dari auth()->user() ke Auth::user()
+    
+        // Redirect otomatis berdasarkan role
+        if ($user->role === 'admin') {
+            return redirect()->route('dashboard');
+        } elseif ($user->role === 'petugas') {
+            return redirect('/dashboard-petugas');
+        } elseif ($user->role === 'siswa') {
+            return redirect()->route('dashboard.siswa');
+        } else {
+            Auth::logout();
+            return redirect('/login')->withErrors(['email' => 'Role tidak dikenali.']);
+        }
     }
-}
 
     /**
      * Destroy an authenticated session.

@@ -104,28 +104,30 @@
                                         Menunggu Persetujuan
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right">
-                                    <div class="flex items-center space-x-3">
-                                        <form action="{{ route('peminjaman.setujui', $p->id) }}" method="POST" class="inline-block">
-                                            @csrf
-                                            <button type="submit" class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                                                <svg class="mr-1.5 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                                                </svg>
-                                                Setujui
-                                            </button>
-                                        </form>
-                                        
-                                        <form action="{{ route('peminjaman.tolak', $p->id) }}" method="POST" class="inline-block">
-                                            @csrf
-                                            <button type="submit" class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                                <svg class="mr-1.5 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                                                </svg>
-                                                Tolak
-                                            </button>
-                                        </form>
-                                    </div>
+                                                                <td class="px-6 py-4 whitespace-nowrap text-right">
+                                    @if(auth()->user()->role === 'petugas' || auth()->user()->role === 'admin')
+                                        <div class="flex items-center space-x-3">
+                                            <form action="{{ route('peminjaman.setujui', $p->id) }}" method="POST" class="inline-block">
+                                                @csrf
+                                                <button type="submit" class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                                    <svg class="mr-1.5 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                    </svg>
+                                                    Setujui
+                                                </button>
+                                            </form>
+                                            
+                                            <form action="{{ route('peminjaman.tolak', $p->id) }}" method="POST" class="inline-block">
+                                                @csrf
+                                                <button type="submit" class="inline-flex items-center px-3 py-1.5 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                                    <svg class="mr-1.5 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                                    </svg>
+                                                    Tolak
+                                                </button>
+                                            </form>
+                                        </div>
+                                    @endif
                                 </td>
                             </tr>
                         @empty

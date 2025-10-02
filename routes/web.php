@@ -14,6 +14,9 @@ use App\Http\Middleware\CheckUserBlacklist;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/dashboard-petugas', function () {
+    return view('dashboard-petugas');
+})->middleware(['auth', 'verified']);
 
 // Authentication Required Routes
 Route::middleware(['auth', 'verified', CheckUserBlacklist::class])->group(function () {
